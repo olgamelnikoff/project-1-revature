@@ -26,21 +26,27 @@ public class ReimbController {
 	
 public Handler newRequest = (ctx) ->{
 		
-	/*String this_Parameter = ctx.pathParam("id");
-	int current_Param = Integer.parseInt(this_Parameter);*/
+	String this_Parameter = ctx.pathParam("id");
+	int current_Param = Integer.parseInt(this_Parameter);
+	System.out.println(current_Param);
 		
 		
 		String amountAsString = ctx.formParam("amount");
-		int amount = Integer.parseInt(amountAsString);
+		System.out.println(amountAsString);
+		Integer amount = Integer.parseInt(amountAsString);
 		String description = ctx.formParam("description");
 		String receiptAsString = ctx.formParam("receipt");
 		byte [] receipt = receiptAsString.getBytes("utf-8");
 		String type = ctx.formParam("type");
 		
-		boolean submitted = rServ.verifyTicketSubmit(amount, description, 1, receipt, type);
+		boolean submitted = rServ.verifyTicketSubmit(amount, description, current_Param, receipt, type);
 		System.out.println(submitted);
 		ctx.status(201);
 		ctx.redirect("/html/employee-dashboard.html");
+	};
+	
+	public Handler testFunction = (ctx) ->{
+		System.out.println("Was in test function");
 	};
 		
 	/*		System.out.println(ctx.formParam("username"));
