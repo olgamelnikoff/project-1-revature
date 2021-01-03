@@ -12,7 +12,7 @@ import io.javalin.http.Handler;
 public class ReimbController {
 	private ReimbService rServ;
 	
-	public Handler viewRequests = (ctx) ->{
+	public Handler viewEmplRequests = (ctx) ->{
 		
 		String this_Parameter = ctx.pathParam("id");
 		int current_Param = Integer.parseInt(this_Parameter);
@@ -48,6 +48,17 @@ public Handler newRequest = (ctx) ->{
 	public Handler testFunction = (ctx) ->{
 		System.out.println("Was in test function");
 	};
+	
+public Handler viewRequests = (ctx) ->{
+		
+	/*String this_Parameter = ctx.pathParam("id");
+	int current_Param = Integer.parseInt(this_Parameter);*/
+		
+		List<Reimbursement> reimbList = new ArrayList<>();
+		reimbList = rServ.getAllRecords();
+		ctx.json(reimbList);
+		ctx.status(200);
+};
 		
 	/*		System.out.println(ctx.formParam("username"));
 			if(uServ.verifyLoginCredentials(ctx.formParam("username"), ctx.formParam("password"))) {

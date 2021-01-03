@@ -26,8 +26,9 @@ public class MainDriver {
 		
 		app.post("/employees/login", uCon.postLogin);
 		app.get("/employees/session", uCon.getSessUser);
-		app.get("/employees/:id/view-requests", rCon.viewRequests);
+		app.get("/employees/:id/view-requests", rCon.viewEmplRequests);
 		app.post("/employees/:id/new-request", rCon.newRequest);
+		app.get("/employees/view-requests", rCon.viewRequests);
 		
 		app.exception(NullPointerException.class, (e, ctx)->{
 			ctx.status(404);
