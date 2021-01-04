@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>View All Tickets</title>
+<title>Rejected Tickets For All Employees</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -17,20 +17,8 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>All Tickets For All Employees</h1>
-	
-	<div class="form-group">
-				<label for="type">Filter Table by Status</label> 
-				<select id="filter" name="filter" onchange="location = this.value;">
-					<option>Select one...</option>
-					<option value = "/html/all-tickets.html">Full Table</option>
-					<option value = "/html/pending.html">1</option>
-					<option value = "/html/approved.html">2</option>
-					<option value = "/html/rejected.html">3</option>
-				</select>
-			</div>
-	
-	<table class="table table-sm" id="thistable">
+<h1>Rejected Tickets For All Employees</h1>
+<table class="table table-sm" id="thistable">
   <thead>
     <tr>
       <!-- <th scope="col">First Name</th>
@@ -50,6 +38,6 @@
   <tbody id="tbody"></tbody>
   </table>
 
-	<script type="text/javascript" src="/js/all-tickets.js"></script>
+	<script type="text/javascript" src="/js/rejected.js"></script>
 </body>
 </html>

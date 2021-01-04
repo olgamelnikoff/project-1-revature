@@ -1,10 +1,17 @@
 package com.example.driver;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.controller.ReimbController;
 import com.example.controller.UserController;
 import com.example.dao.DAOConnection;
+import com.example.dao.ReimbursementDAO;
 import com.example.dao.ReimbursementDAOImpl;
+import com.example.dao.UserDAO;
 import com.example.dao.UserDAOImpl;
+import com.example.model.Reimbursement;
 import com.example.service.ReimbService;
 import com.example.service.UserService;
 
@@ -14,26 +21,28 @@ public class MainDriver {
 
 	public static void main(String[] args) {
 
-		UserController uCon = new UserController(new UserService(new UserDAOImpl(new DAOConnection())));
-		ReimbController rCon = new ReimbController(new ReimbService(new ReimbursementDAOImpl(new DAOConnection())));
-		System.out.println(uCon);
-
-		Javalin app = Javalin.create(config -> {
-			config.addStaticFiles("/frontend");
-		});
-
-		app.start(7001);
+				UserController uCon = new UserController(new UserService(new UserDAOImpl(new DAOConnection())));
+				ReimbController rCon = new ReimbController(new ReimbService(new ReimbursementDAOImpl(new DAOConnection())));
+				System.out.println(uCon);
 		
-		app.post("/employees/login", uCon.postLogin);
-		app.get("/employees/session", uCon.getSessUser);
-		app.get("/employees/:id/view-requests", rCon.viewEmplRequests);
-		app.post("/employees/:id/new-request", rCon.newRequest);
-		app.get("/employees/view-requests", rCon.viewRequests);
+				Javalin app = Javalin.create(config -> {
+					config.addStaticFiles("/frontend");
+				});
 		
-		app.exception(NullPointerException.class, (e, ctx)->{
-			ctx.status(404);
-			ctx.result("User Does not exists");
-		});
+				app.start(7001);
+				
+				app.post("/employees/login", uCon.postLogin);
+				app.get("/employees/session", uCon.getSessUser);
+				app.get("/employees/:id/view-requests", rCon.viewEmplRequests);
+				app.post("/employees/:id/new-request", rCon.newRequest);
+				app.get("/employees/view-requests", rCon.viewRequests);
+				app.post("/employees/:reimb/:resolver/approve", rCon.approveRequest);
+				app.post("/employees/:reimb/:resolver/reject", rCon.rejectRequest);
+				
+				app.exception(NullPointerException.class, (e, ctx)->{
+					ctx.status(404);
+					ctx.result("User Does not exists");
+				});
 
 		/*		app.post("/villains/login", vCon.postLogin);
 				app.get("/villains/session", vCon.getSessVill);*/
@@ -44,16 +53,16 @@ public class MainDriver {
 		});*/
 
 //---------------------------------------------------------
-		/*UserDAO newDAO = new UserDAOImpl();
-		ReimbursementDAO rDAO = new ReimbursementDAOImpl();
-		
-		UserService us = new UserService(newDAO);
-		
-		ReimbService rs = new ReimbService(rDAO);
-		
-		List<Reimbursement> thisList = new ArrayList<>();
-		
-		byte [] array = {0, 0, 127};*/
+		/*		UserDAO newDAO = new UserDAOImpl();
+				ReimbursementDAO rDAO = new ReimbursementDAOImpl();
+				
+				UserService us = new UserService(newDAO);
+				
+				ReimbService rs = new ReimbService(rDAO);
+				
+				List<Reimbursement> thisList = new ArrayList<>();
+				
+				byte [] array = {0, 0, 127};*/
 
 		/*		try {
 					rs.verifyTicketSubmit(3000, "Visit of Alcatraz", 3, array, "Travel");
@@ -75,13 +84,13 @@ public class MainDriver {
 			System.out.println(r.toString());
 		}*/
 
-		/*		try {
-					rs.verifyRequestApproval(3, 100);
-				} catch (SQLIntegrityConstraintViolationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				*/
+		/*				try {
+							rs.verifyRequestApproval(3, 20010);
+						} catch (SQLIntegrityConstraintViolationException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}*/
+				
 
 		/*boolean registerBool = us.registerUser("hello", "zRRgQCxQ", "Errol", "Jacobs", "jacobs@comcast.net", "Finance Manager");
 		System.out.println(registerBool);*/

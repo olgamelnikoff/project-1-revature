@@ -59,6 +59,38 @@ public Handler viewRequests = (ctx) ->{
 		ctx.json(reimbList);
 		ctx.status(200);
 };
+
+public Handler approveRequest = (ctx) ->{
+	
+	String reimb_Parameter = ctx.pathParam("reimb");
+	int reimb = Integer.parseInt(reimb_Parameter);
+	
+	String resolver_Parameter = ctx.pathParam("resolver");
+	int resolver = Integer.parseInt(resolver_Parameter);
+	System.out.println(reimb);
+	System.out.println(resolver);
+	
+	boolean approved = rServ.verifyRequestApproval(resolver, reimb);
+	System.out.println(approved);
+	ctx.status(200);
+	//ctx.redirect("/html/employee-dashboard.html");
+};
+
+public Handler rejectRequest = (ctx) ->{
+	
+	String reimb_Parameter = ctx.pathParam("reimb");
+	int reimb = Integer.parseInt(reimb_Parameter);
+	
+	String resolver_Parameter = ctx.pathParam("resolver");
+	int resolver = Integer.parseInt(resolver_Parameter);
+	System.out.println(reimb);
+	System.out.println(resolver);
+	
+	boolean approved = rServ.verifyRequestRejection(resolver, reimb);
+	System.out.println(approved);
+	ctx.status(200);
+	//ctx.redirect("/html/employee-dashboard.html");
+};
 		
 	/*		System.out.println(ctx.formParam("username"));
 			if(uServ.verifyLoginCredentials(ctx.formParam("username"), ctx.formParam("password"))) {

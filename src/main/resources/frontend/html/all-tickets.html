@@ -21,12 +21,12 @@
 	
 	<div class="form-group">
 				<label for="type">Filter Table by Status</label> 
-				<select id="filter" name="filter">
+				<select id="filter" name="filter" onchange="location = this.value;">
 					<option>Select one...</option>
-					<option>Full Table</option>
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
+					<option value = "/html/all-tickets.html">Full Table</option>
+					<option value = "/html/pending.html">1</option>
+					<option value = "/html/approved.html">2</option>
+					<option value = "/html/rejected.html">3</option>
 				</select>
 			</div>
 	
@@ -45,7 +45,6 @@
       <th scope="col">Resolver</th>
       <th scope="col">Status</th>
       <th scope="col">Type</th>
-      <th scope="col">Approve/Reject</th>
     </tr>
   </thead>
   <tbody id="tbody"></tbody>

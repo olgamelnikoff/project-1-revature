@@ -3,29 +3,31 @@
  */
 
 let tab = document.getElementsByTagName("tbody")[0];
-let filter = document.getElementById("filter");
+/*let filter = document.getElementById("filter");
 
 filter.addEventListener('change', function() {
-	let type = this.value;
+	
+	
+	
+	
+	
+	let status = this.value;
 	$("#tbody").remove();
-	let newTBody = document.createElement("tbody");
-	let thisTable = document.getElementById("thistable");
-	thisTable.appendChild(newTBody);
 	//let tabOld = tab;
-	if(type == "Full Table") {
+	if(status == "Full Table") {
 		console.log("Was in full table");
 		fullTable();
 	}
-	console.log("Type is" + type);
+	console.log("status is" + status);
 	//let tabNew = document.createElement('tbody');
 	//tabOld.parentNode.replaceChild(tabNew, tabOld);
 	let xhttp = new XMLHttpRequest();
 		
 	xhttp.onreadystatechange = function(){
-		//console.log("Type 2 is" + type);
+		//console.log("status 2 is" + status);
 		
 		if(xhttp.readyState == 4 && xhttp.status == 200){
-			//console.log("Type 3 is" + type);
+			//console.log("status 3 is" + status);
 			
 			let allReimbursementsNew = JSON.parse(xhttp.responseText);
 			
@@ -36,12 +38,17 @@ filter.addEventListener('change', function() {
 				//console.log("Was in first for");
 				let singleObjectNew = allReimbursementsNew[i];
 				let singleArrayNew = Object.values(singleObjectNew);
-				let currentType = singleArrayNew[9];
-				console.log(currentType);
-				console.log(type);
+				let currentStatus = singleArrayNew[8];
+				console.log(currentStatus);
+				console.log(status);
 				
-				if(currentType == type) {
+				if(currentStatus == status) {
+					$("#tbody").remove();
+					let newTBody = document.createElement("tbody");
+					let thisTable = document.getElementById("thistable");
+					thisTable.appendChild(newTBody);
 					//console.log("Wash in if");
+					console.log("For status " + status + " number of rows is " + newTBody.rows.length);
 					let newRowNew = newTBody.insertRow(newTBody.rows.length - 1);
 					for (let j = 0; j < singleArrayNew.length; j++) {
 							let cellNew = newRowNew.insertCell(j);
@@ -73,7 +80,7 @@ filter.addEventListener('change', function() {
 
 function testFunction() {
 	console.log("change has been made");
-}
+}*/
 window.onload=function(){
 	console.log("js is linked");
 	fullTable();
