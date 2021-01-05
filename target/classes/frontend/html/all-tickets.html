@@ -16,22 +16,20 @@
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 </head>
-<body>
-	<h1>All Tickets For All Employees</h1>
+<body style= "background-color:khaki">
+	<h1 style= "color:red">All Tickets For All Employees</h1>
 	
 	<div class="form-group">
-				<label for="type">Filter Table by Status</label> 
+				<label for="type" style= "color:red"><b>Filter Table by Status</b></label> 
 				<select id="filter" name="filter" onchange="location = this.value;">
 					<option>Select one...</option>
-					<option value = "/html/all-tickets.html">Full Table</option>
-					<option value = "/html/pending.html">1</option>
-					<option value = "/html/approved.html">2</option>
-					<option value = "/html/rejected.html">3</option>
+					<option value = "/html/pending.html">Pending</option>
+					<option value = "/html/approved.html">Approved</option>
+					<option value = "/html/rejected.html">Rejected</option>
 				</select>
 			</div>
-	
-	<table class="table table-sm" id="thistable">
-  <thead>
+	<table style = "font-family: Lucida Console" class="table table-sm table-dark table-striped table-bordered" id="thistable">
+  <thead style= "color:khaki">
     <tr>
       <!-- <th scope="col">First Name</th>
       <th scope="col">Last Name</th> -->
@@ -49,7 +47,6 @@
   </thead>
   <tbody id="tbody"></tbody>
   </table>
-
 	<script type="text/javascript" src="/js/all-tickets.js"></script>
 </body>
 </html>

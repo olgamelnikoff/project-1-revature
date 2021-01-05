@@ -1,6 +1,7 @@
 package com.example.model;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class Reimbursement {
 	private int reimbID;
@@ -39,6 +40,42 @@ public class Reimbursement {
 		this.description = description;
 		this.receipt = receipt;
 		this.author = author;
+		this.type = type;
+	}
+	
+	public Reimbursement(int amount, String description, int author, int type) {
+		super();
+		this.amount = amount;
+		this.description = description;
+		this.author = author;
+		this.type = type;
+	}
+	
+	public Reimbursement(int amount, String description, int author, int status, int type) {
+		super();
+		this.amount = amount;
+		this.description = description;
+		this.author = author;
+		this.status = status;
+		this.type = type;
+	}
+
+	public Reimbursement(int amount, String description, byte[] receipt, int author, int status, int type) {
+		super();
+		this.amount = amount;
+		this.description = description;
+		this.receipt = receipt;
+		this.author = author;
+		this.status = status;
+		this.type = type;
+	}
+	
+	public Reimbursement(int amount, byte[] receipt, int author, int status, int type) {
+		super();
+		this.amount = amount;
+		this.receipt = receipt;
+		this.author = author;
+		this.status = status;
 		this.type = type;
 	}
 
@@ -124,8 +161,51 @@ public class Reimbursement {
 
 	@Override
 	public String toString() {
-		return "Reimbursement [amount=" + amount + ", submitted=" + submitted + ", resolved=" + resolved
-				+ ", description=" + description + ", author=" + author + ", resolver=" + resolver + ", status="
+		return "Reimbursement [id =" + reimbID + ", amount =" + amount +  ", submitted=" + submitted + ", resolved=" + resolved
+				+ ", description=" + description + ", receipt =" + receipt + ", author=" + author + ", resolver=" + resolver + ", status="
 				+ status + ", type=" + type + "]";
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reimbursement other = (Reimbursement) obj;
+		if (amount != other.amount)
+			return false;
+		if (author != other.author)
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (!Arrays.equals(receipt, other.receipt))
+			return false;
+		if (reimbID != other.reimbID)
+			return false;
+		if (resolved == null) {
+			if (other.resolved != null)
+				return false;
+		} else if (!resolved.equals(other.resolved))
+			return false;
+		if (resolver != other.resolver)
+			return false;
+		if (status != other.status)
+			return false;
+		if (submitted == null) {
+			if (other.submitted != null)
+				return false;
+		} else if (!submitted.equals(other.submitted))
+			return false;
+		if (type != other.type)
+			return false;
+		return true;
+	}
+	
+	
 }
