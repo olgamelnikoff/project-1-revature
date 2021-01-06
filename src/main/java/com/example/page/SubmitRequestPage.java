@@ -3,6 +3,7 @@ package com.example.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class SubmitRequestPage {
 	private WebDriver driver;
@@ -10,7 +11,7 @@ public class SubmitRequestPage {
 	private WebElement amountField;
 	private WebElement descriptionField;
 	private WebElement chooseFileButton;
-	private WebElement typeSelection;
+	private Select typeSelection;
 	private WebElement submitButton;
 	
 	public SubmitRequestPage (WebDriver driver) {
@@ -21,7 +22,7 @@ public class SubmitRequestPage {
 		this.amountField = driver.findElement(By.id("amount"));
 		this.descriptionField = driver.findElement(By.id("description"));
 		this.chooseFileButton = driver.findElement(By.id("receipt"));
-		this.typeSelection = driver.findElement(By.id("type"));
+		this.typeSelection = new Select (driver.findElement(By.id("type")));
 		this.submitButton = driver.findElement(By.id("requestSubmit"));
 	}
 	
@@ -51,13 +52,8 @@ public class SubmitRequestPage {
 		this.chooseFileButton = chooseFileButton;
 	}
 
-	public String getTypeSelection() {
-		return this.typeSelection.getText();
-	}
-
 	public void setTypeSelection(String typeSelection) {
-		this.typeSelection.clear(); 
-		this.typeSelection.sendKeys(typeSelection);
+		this.typeSelection.selectByVisibleText(typeSelection);
 	}
 
 	public String getHeader() {

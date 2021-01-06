@@ -8,6 +8,7 @@
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -16,22 +17,40 @@
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color: #A0A0A0; height: 100vh">
 
-<div class="login-container">
-		<h3>Sign-in Form</h3>
-		
-			<form id="login-form" method="post" action="/employees/login">
-			<p>Please enter Login and Password</p>
-			<input type="text" id="username" placeholder="Enter Username" name="username">
-			<br>
-			<br>
-			<input type="text" id="password" placeholder="Enter Password" name="password">
-			<br>
-			<br>
-			<input type="submit" value="Login" id="credentialsSubmit" name="login-submit" class = "btn btn-danger">
-		</form>
-		
+	<div class="container" style="height: 100vh">
+		<div class="row" style="height: 10vh"></div>
+		<div class="row" style="height: 60vh">
+			<div class="col-sm">
+				<img width="400" height="500"
+					src="https://c8.alamy.com/comp/PND668/1930s-1940s-new-york-city-downtown-skyline-from-the-statue-of-liberty-boat-upper-deck-nyc-usa-r1149-har001-hars-har001-hudson-river-old-fashioned-PND668.jpg"
+					style="filter: grayscale(100%)">
+			</div>
+			<div class="col-sm">
+				<div class="login-container">
+					<h1 style="color: white">Sign-in Form</h1>
+					<form id="login-form" method="post" action="/employees/login">
+						<h4 style="color: white">Please enter Login and Password</h4>
+						<input type="text" id="username" placeholder="Enter Username"
+							name="username"> <br> <br> <input type="password"
+							id="password" placeholder="Enter Password" name="password">
+						<br> <br> <input type="submit" value="Login"
+							id="credentialsSubmit" name="login-submit" class="btn btn-dark">
+					</form>
+
+				</div>
+			</div>
+			<div class="col-sm">
+				<img width="400" height="500"
+					src="https://c8.alamy.com/comp/T630MW/1940s-1950s-smiling-brunette-woman-looking-at-camera-opening-paycheck-envelope-and-holding-the-cash-s8493-har001-hars-brunette-freedom-skill-temptation-dreams-occupation-happiness-skills-paycheck-cheerful-strength-pay-and-excitement-pride-the-occupations-smiles-joyful-stylish-compensation-employee-young-adult-woman-black-and-white-caucasian-ethnicity-har001-old-fashioned-T630MW.jpg"
+					style="filter: grayscale(100%)">
+
+			</div>
+		</div>
+		<div class="row" style="height: 20vh"></div>
 	</div>
+
+
 </body>
 </html>

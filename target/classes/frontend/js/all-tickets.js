@@ -2,7 +2,6 @@ let tab = document.getElementsByTagName("tbody")[0];
 
 window.onload=function(){
 	fullTable();
-	console.log(test());
 }
 
 function test () {

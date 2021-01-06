@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Employee Dashboard</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	href="C:/Users/Olyun/Documents/workspace-spring-tool-suite-4-4.8.1.RELEASE/Project1/src/main/resources/frontend/css/style.css"/>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -16,23 +18,35 @@
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 </head>
-<body>
-<h1>Employee Dashboard</h1>
+<body style="background-color: #B0B0B0; height: 100vh">
 
-<div class="container">
+	<div class="container" style="height: 10vh">
 		<div class="row">
-			<div class="col">
-				<div class="container-fluid">
-				
-					<a class="btn btn-danger" href="/html/view-past-tickets.html" role="button" id="view-tickets">View Past Tickets</a>
-				</div>
+			<div class="col-sm">
+			<div class="container-fluid">
+
+						<a class="btn btn-dark" href="/html/view-past-tickets.html"
+							role="button" id="view-tickets">View Past Tickets</a>
+					</div></div>
+			<div class="col-md">
+				<h2 style="color: white; text-align: center" class="standard-page">Employee Dashboard</h2>
 			</div>
-			<div class="col">
-				<a class="btn btn-danger" href="/html/submit-request.html" role="button" id="add-request">Add Reimbursement Request</a>
+			<div class="col-sm">
+			<div class="container-fluid">
+			<a class="btn btn-dark" href="/html/submit-request.html"
+						role="button" id="add-request">Add Reimbursement Request</a>
+						</div>
 			</div>
 		</div>
 	</div>
 
-<script type="text/javascript" src ="/js/login.js"></script> 
+	<div class="container"
+		style="height: 90vh; background-image: url(https://img1.goodfon.ru/original/5184x3456/7/2d/eiffel-tower-paris-france.jpg); background-size: 1000px; background-repeat: no-repeat">
+		
+	</div>
+
+
+
+	<script type="text/javascript" src="/js/login.js"></script>
 </body>
 </html>

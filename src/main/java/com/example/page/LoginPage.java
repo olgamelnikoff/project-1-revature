@@ -17,7 +17,7 @@ public class LoginPage {
 		this.driver = driver;
 		this.navigateTo();
 		
-		this.header = driver.findElement(By.tagName("h3"));
+		this.header = driver.findElement(By.tagName("h1"));
 		this.usernameField = driver.findElement(By.name("username"));
 		this.passwordField = driver.findElement(By.name("password"));
 		this.submitButton = driver.findElement(By.name("login-submit"));

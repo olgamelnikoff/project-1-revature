@@ -16,7 +16,7 @@ public class EmployeeDashboard {
 		this.driver = driver;
 		this.navigateTo();
 		
-		this.header = driver.findElement(By.tagName("h1"));
+		this.header = driver.findElement(By.tagName("h2"));
 		this.addReimbursementRequestButton = driver.findElement(By.id("add-request"));
 		this.viewPastTicketsButton = driver.findElement(By.id("view-tickets"));
 	}
@@ -30,7 +30,7 @@ public class EmployeeDashboard {
 	}
 	
 	public void viewTicketsButtonClick() {
-		this.addReimbursementRequestButton.click();
+		this.viewPastTicketsButton.click();
 	}
 	
 	public void navigateTo() {

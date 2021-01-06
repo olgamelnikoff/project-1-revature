@@ -54,7 +54,6 @@ public class SubmitRequestPageTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		this.lp = new LoginPage(driver);
 		Thread.sleep(1000);
 		lp.setUsername("spacexdragon");
@@ -77,8 +76,9 @@ public class SubmitRequestPageTest {
 		Thread.sleep(1000);
 		page.setDescriptionField("Test");
 		Thread.sleep(1000);
-		//page.setTypeSelection("Travel");
-		assertEquals(page.getHeader(), "Submit A New Request");
+		page.setTypeSelection("Travel");
+		Thread.sleep(1000);
+		assertEquals(page.getHeader(), "Submit a new request");
 		page.submit();
 		Thread.sleep(1000);
 		
@@ -86,7 +86,7 @@ public class SubmitRequestPageTest {
 		
 		wait.until(ExpectedConditions.urlMatches("/employee-dashboard.html"));
 		
-		Reimbursement expectedReimb = new Reimbursement(2000, "Test", 1, 1, 1);
+		Reimbursement expectedReimb = new Reimbursement(2000, "Test", 1, 1, 2);
 		
 		Reimbursement actualReimb = new Reimbursement();
 		
