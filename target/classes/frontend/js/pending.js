@@ -43,15 +43,15 @@ function fullTable() {
 					let approveButton = document.createElement("button");
 					approveButton.innerHTML="Approve";
 					approveButton.setAttribute("id", `${reimbId}`);
+					approveButton.setAttribute("style", "background-color: khaki");
 					approveCell.appendChild(approveButton);
 					
 					let rejectCell = newRowNew.insertCell(newRowNew.cells.length);
 					let rejectButton = document.createElement("button");
 					rejectButton.innerHTML="Reject";
 					rejectButton.setAttribute("id", `${reimbId}`);
+					rejectButton.setAttribute("style", "background-color: khaki");
 					rejectCell.appendChild(rejectButton);
-					
-				
 					
 					approveButton.addEventListener("click", function() {
 						let reimbursementId = this.id;

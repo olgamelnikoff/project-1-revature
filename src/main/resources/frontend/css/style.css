@@ -13,3 +13,16 @@
 .standard-page {
 	color: "yellow";
 }
+
+.table-header {
+	color:red;
+	text-align:center;
+}
+
+.table-body {
+	background-color:khaki;
+}
+
+.table-head {
+	color:khaki;
+}

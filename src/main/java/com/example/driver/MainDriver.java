@@ -1,29 +1,26 @@
 package com.example.driver;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 
 import com.example.controller.ReimbController;
 import com.example.controller.UserController;
 import com.example.dao.DAOConnection;
-import com.example.dao.ReimbursementDAO;
 import com.example.dao.ReimbursementDAOImpl;
-import com.example.dao.UserDAO;
 import com.example.dao.UserDAOImpl;
-import com.example.model.Reimbursement;
 import com.example.service.ReimbService;
 import com.example.service.UserService;
 
 import io.javalin.Javalin;
 
 public class MainDriver {
+	public final static Logger log = Logger.getLogger(MainDriver.class);
 
 	public static void main(String[] args) {
+		BasicConfigurator.configure();
 
 				UserController uCon = new UserController(new UserService(new UserDAOImpl(new DAOConnection())));
 				ReimbController rCon = new ReimbController(new ReimbService(new ReimbursementDAOImpl(new DAOConnection())));
-				System.out.println(uCon);
 		
 				Javalin app = Javalin.create(config -> {
 					config.addStaticFiles("/frontend");
