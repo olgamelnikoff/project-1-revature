@@ -24,8 +24,6 @@ import com.example.page.EmployeeDashboard;
 import com.example.page.LoginPage;
 import com.example.page.SubmitRequestPage;
 
-import jdk.jfr.Timespan;
-
 public class SubmitRequestPageTest {
 	private LoginPage lp;
 	private EmployeeDashboard ed;
@@ -107,21 +105,7 @@ public class SubmitRequestPageTest {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-
-		/*		assertEquals(expectedReimb.getAmount(), actualReimb.getAmount());
-				assertEquals(expectedReimb.getReimbID(), actualReimb.getReimbID());
-				assertEquals(expectedReimb.getReceipt(), actualReimb.getReceipt());
-				assertEquals(expectedReimb.getSubmitted(), actualReimb.getSubmitted());
-				assertEquals(expectedReimb.getResolved(), actualReimb.getResolved());
-				
-				assertEquals(expectedReimb.getAuthor(), actualReimb.getAuthor());
-				assertEquals(expectedReimb.getResolver(), actualReimb.getResolver());
-				assertEquals(expectedReimb.getStatus(), actualReimb.getStatus());
-				assertEquals(expectedReimb.getType(), actualReimb.getType());
-				assertEquals(expectedReimb.getDescription(), actualReimb.getDescription());*/
-		
+		}	
 		assertEquals(expectedReimb, actualReimb);
-		
 	}
 }

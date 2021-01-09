@@ -1,6 +1,6 @@
 let tab = document.getElementsByTagName("tbody")[0];
 
-window.onload=function(){
+window.onload = function() {
 	fullTable();
 }
 
@@ -9,122 +9,163 @@ function fullTable() {
 		let resId = data;
 		let reimbId;
 		let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		
-		if(xhttp.readyState == 4 && xhttp.status == 200){
-			let allReimbursements = JSON.parse(xhttp.responseText);
-			
-			
-			for (let i = 0; i < allReimbursements.length; i++) {
-				
-				let singleObjectNew = allReimbursements[i];
-				let singleArrayNew = Object.values(singleObjectNew);
-				let currentStatus = singleArrayNew[8];
-				
-				if(currentStatus == 1) {
-					reimbId = singleArrayNew[0];
-					console.log(reimbId);
-					
-					let newRowNew = tab.insertRow(tab.rows.length - 1);
-					for (let j = 0; j < singleArrayNew.length; j++) {
+
+		xhttp.onreadystatechange = function() {
+
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				let allReimbursements = JSON.parse(xhttp.responseText);
+
+
+				for (let i = 0; i < allReimbursements.length; i++) {
+
+					let singleObjectNew = allReimbursements[i];
+					let singleArrayNew = Object.values(singleObjectNew);
+					let currentStatus = singleArrayNew[8];
+					let authorID;
+
+					if (currentStatus == 1) {
+						reimbId = singleArrayNew[0];
+						console.log(reimbId);
+
+						let newRowNew = tab.insertRow(tab.rows.length - 1);
+						for (let j = 0; j < singleArrayNew.length; j++) {
 							let cellNew = newRowNew.insertCell(j);
 							let thisValueNew = singleArrayNew[j]
-							if (j == 2 || j ==3) {
-								var date = new Date (thisValueNew).toLocaleDateString("en-US");
+							if (j == 2 || j == 3) {
+								var date = new Date(thisValueNew).toLocaleDateString("en-US");
 								cellNew.innerText = date;
 							}
+							else if (j == 6) {
+								console.log("Was in j == 6");
+								authorID = thisValueNew;
+								console.log("Author id is " + authorID);
+								
+								cellNew.innerText = thisValueNew;
+							}
+
 							else {
 								cellNew.innerText = thisValueNew;
-								
+
 							}
+						}
+						let approveCell = newRowNew.insertCell(newRowNew.cells.length);
+						let approveButton = document.createElement("button");
+						approveButton.innerHTML = "Approve";
+						approveButton.setAttribute("id", `${reimbId}`);
+						approveButton.setAttribute("class", "approval");
+						approveButton.setAttribute("style", "background-color: khaki");
+						approveCell.appendChild(approveButton);
+
+						let rejectCell = newRowNew.insertCell(newRowNew.cells.length);
+						let rejectButton = document.createElement("button");
+						rejectButton.innerHTML = "Reject";
+						rejectButton.setAttribute("id", `${reimbId}`);
+						rejectButton.setAttribute("style", "background-color: khaki");
+						rejectCell.appendChild(rejectButton);
+
+						approveButton.addEventListener("click", function() {
+							let reimbursementId = this.id;
+							console.log(reimbId);
+							console.log(resId);
+							let xhttp = new XMLHttpRequest();
+
+							xhttp.onreadystatechange = function() {
+
+								if (xhttp.readyState == 4 && xhttp.status == 200) {
+									if (authorID == resId) {
+										alert("You cannot approve your own request.");
+									}
+									else {
+										alert("The request has been approved.");
+									}
+
+								}
+							}
+
+							xhttp.open("POST", `http://localhost:7001/employees/${reimbursementId}/${resId}/approve`);
+
+							xhttp.send();
+
+
+						});
+
+						rejectButton.addEventListener("click", function() {
+							let reimbursementId = this.id;
+							console.log(reimbId);
+							console.log(resId);
+							let xhttp = new XMLHttpRequest();
+
+							xhttp.onreadystatechange = function() {
+
+								if (xhttp.readyState == 4 && xhttp.status == 200) {
+									alert("The request has been rejected");
+								}
+							}
+
+							xhttp.open("POST", `http://localhost:7001/employees/${reimbursementId}/${resId}/reject`);
+
+							xhttp.send();
+
+
+						});
 					}
-					let approveCell = newRowNew.insertCell(newRowNew.cells.length);
-					let approveButton = document.createElement("button");
-					approveButton.innerHTML="Approve";
-					approveButton.setAttribute("id", `${reimbId}`);
-					approveButton.setAttribute("style", "background-color: khaki");
-					approveCell.appendChild(approveButton);
-					
-					let rejectCell = newRowNew.insertCell(newRowNew.cells.length);
-					let rejectButton = document.createElement("button");
-					rejectButton.innerHTML="Reject";
-					rejectButton.setAttribute("id", `${reimbId}`);
-					rejectButton.setAttribute("style", "background-color: khaki");
-					rejectCell.appendChild(rejectButton);
-					
-					approveButton.addEventListener("click", function() {
-						let reimbursementId = this.id;
-						console.log(reimbId);
-						console.log(resId);
-						let xhttp = new XMLHttpRequest();
-	
-					xhttp.onreadystatechange = function(){
-		
-					if(xhttp.readyState == 4 && xhttp.status == 200){
-						alert("The request has been approved");
-					}
-					}
-					
-					xhttp.open("POST", `http://localhost:7001/employees/${reimbursementId}/${resId}/approve`);
-	
-					xhttp.send();
-	
-						
-					});
-					
-					rejectButton.addEventListener("click", function() {
-						let reimbursementId = this.id;
-						console.log(reimbId);
-						console.log(resId);
-						let xhttp = new XMLHttpRequest();
-	
-					xhttp.onreadystatechange = function(){
-		
-					if(xhttp.readyState == 4 && xhttp.status == 200){
-						alert("The request has been rejected");
-					}
-					}
-					
-					xhttp.open("POST", `http://localhost:7001/employees/${reimbursementId}/${resId}/reject`);
-	
-					xhttp.send();
-	
-						
-					});
 				}
+
 			}
-			
 		}
-	}
-	
-	xhttp.open("GET", `http://localhost:7001/employees/view-requests`);
-	
-	xhttp.send();
-		
+
+		xhttp.open("GET", `http://localhost:7001/employees/view-requests`);
+
+		xhttp.send();
+
 	});
 }
 
 let emplObj;
 let emplId;
 
-function getSession(callback){
+function getSession(callback) {
 	let xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function(){
-		
-		if(xhttp.readyState == 4 && xhttp.status == 200){
+
+	xhttp.onreadystatechange = function() {
+
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
 			emplObj = JSON.parse(xhttp.responseText);
 			emplId = emplObj.id;
-			
-/*			console.log(emplObj);
-			console.log(emplObj.id);*/
-			
-			callback(emplId);
+			emplFirstName = emplObj.firstName;
+			emplLastName = emplObj.lastName;
+
+			/*			console.log(emplObj);
+						console.log(emplObj.id);*/
+
+			callback(emplId, emplFirstName, emplLastName);
 		}
 	}
-	
+
 	xhttp.open("GET", "http://localhost:7001/employees/session");
-	
+
+	xhttp.send();
+}
+
+function getFirstAndLastName(callback) {
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			emplObj = JSON.parse(xhttp.responseText);
+			emplId = emplObj.id;
+			emplFirstName = emplObj.firstName;
+			emplLastName = emplObj.lastName;
+
+			console.log(emplObj.firstName);
+			console.log(emplObj.lastName);
+
+			callback(emplFirstName, emplLastName);
+		}
+	}
+
+	xhttp.open("GET", "http://localhost:7001/employees/session");
+
 	xhttp.send();
 }

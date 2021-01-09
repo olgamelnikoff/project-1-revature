@@ -15,44 +15,43 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.example.dao.DAOConnection;
 import com.example.model.Reimbursement;
 import com.example.page.AllTickets;
-import com.example.page.EmployeeDashboard;
 import com.example.page.FinanceManagerDashboard;
 import com.example.page.LoginPage;
-import com.example.page.SubmitRequestPage;
+import com.example.page.PendingTicketsPage;
 
 public class ApproveRequestTest {
-	
+
 	private LoginPage lp;
 	private FinanceManagerDashboard fmd;
 	private AllTickets allTicketsPage;
+	private PendingTicketsPage pendingPage;
 	private static WebDriver driver;
 	private DAOConnection connection = new DAOConnection();
-	
+	int buttonID;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		String filePath = "src/test/resources/chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", filePath);
-		
+
 		driver = new ChromeDriver();
-		
+
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
-	
+
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		driver.quit();
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	@Before
 	public void setUp() throws Exception {
 		this.lp = new LoginPage(driver);
@@ -66,56 +65,42 @@ public class ApproveRequestTest {
 		fmd = new FinanceManagerDashboard(driver);
 		Thread.sleep(1000);
 		fmd.viewAllTicketsButtonClick();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		allTicketsPage = new AllTickets(driver);
 		Thread.sleep(2000);
-		allTicketsPage.setTableSelection("Pending");
+		pendingPage = new PendingTicketsPage(driver);
 		Thread.sleep(2000);
 	}
+
 	@Test
-	public void gotToAllTicketsTable() {
-		assertEquals(1, 1);
-	}
-	
-	/*@Test
-	public void testSuccessfulSubmit() throws InterruptedException {
-		page.setAmount("2000");
-		Thread.sleep(1000);
-		page.setDescriptionField("Test");
-		Thread.sleep(1000);
-		page.setTypeSelection("Travel");
-		Thread.sleep(1000);
-		assertEquals(page.getHeader(), "Submit a new request");
-		page.submit();
-		Thread.sleep(1000);
-		
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		
-		wait.until(ExpectedConditions.urlMatches("/employee-dashboard.html"));
-		
-		Reimbursement expectedReimb = new Reimbursement(2000, "Test", 1, 1, 2);
-		
+	public void approveRequestSuccess() throws InterruptedException {
+		assertEquals(pendingPage.getHeader(), "Pending Tickets For All Employees");
+		pendingPage.approveButtonClick();
+		Thread.sleep(3000);
+
+		Reimbursement expectedReimb = new Reimbursement(2000, "Test", 1, 2, 2);
+
 		Reimbursement actualReimb = new Reimbursement();
-		
+
 		try (Connection con = connection.getDBConnection()) {
-			String sql = "SELECT REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID FROM ERS_REIMBURSEMENT WHERE REIMB_ID = (SELECT MAX(REIMB_ID) FROM ERS_REIMBURSEMENT)";
+			String sql = "SELECT REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID FROM ERS_REIMBURSEMENT WHERE REIMB_ID = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, 40420);
 			ResultSet rs = ps.executeQuery();
-			
-			if(!rs.first()) {
+
+			if (!rs.first()) {
 				actualReimb = null;
 			}
-			
+
 			else {
 				do {
-					actualReimb = new Reimbursement(rs.getInt(1), rs.getString(2), rs.getInt(3), 
-							rs.getInt(4), rs.getInt(5));
-				} while(rs.next());
+					actualReimb = new Reimbursement(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
+							rs.getInt(5));
+				} while (rs.next());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
 		assertEquals(expectedReimb, actualReimb);
-	
-	}*/}
+	}
+}

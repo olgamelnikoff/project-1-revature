@@ -12,6 +12,20 @@ import io.javalin.http.Handler;
 public class ReimbController {
 	private ReimbService rServ;
 	
+	
+	
+	public Handler viewTicket = (ctx) ->{
+		
+		String this_Parameter = ctx.pathParam("id");
+		int current_Param = Integer.parseInt(this_Parameter);
+		
+		Reimbursement thisReimbursement = rServ.verifyReimbursement(current_Param);
+	
+		ctx.json(thisReimbursement);
+		ctx.status(200);
+		//ctx.redirect("/html/employee-dashboard.html");
+	};
+	
 	public Handler viewEmplRequests = (ctx) ->{
 		
 		String this_Parameter = ctx.pathParam("id");

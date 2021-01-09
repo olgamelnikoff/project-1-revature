@@ -1,1 +1,20 @@
 2021-01-08 15:33:56 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
+2021-01-09 12:03:56 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 12:20:59 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 12:24:40 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 12:26:22 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 12:52:55 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 13:16:18 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 13:26:05 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 13:33:22 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 13:36:58 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 13:43:33 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 13:45:57 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 13:49:57 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 14:12:18 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
+2021-01-09 14:13:05 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
+2021-01-09 14:14:32 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
+2021-01-09 14:16:52 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
+2021-01-09 14:19:29 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
+2021-01-09 14:52:47 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
+2021-01-09 14:55:00 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.

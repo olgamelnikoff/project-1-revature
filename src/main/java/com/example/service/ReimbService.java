@@ -22,6 +22,19 @@ public class ReimbService {
 		ReimbServiceDAO = reimbServiceDAO;
 	}
 	
+	public Reimbursement verifyReimbursement(int id) throws SQLIntegrityConstraintViolationException {
+		Reimbursement thisReimbursement = new Reimbursement();
+		if (ReimbServiceDAO.viewReimbursement(id) == null) {
+			System.out.println("Reimbursement does not exist.");
+			throw new SQLIntegrityConstraintViolationException();
+			
+		}
+		else {
+			thisReimbursement = ReimbServiceDAO.viewReimbursement(id);
+		}
+		return thisReimbursement;
+	}
+	
 	public boolean verifyTicketSubmit(int amount, String description, int userID, byte [] receipt, String type) throws SQLIntegrityConstraintViolationException {
 		boolean ticketSubmitVerified = false;
 		

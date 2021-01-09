@@ -3,30 +3,29 @@ package com.example.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public class PendingTicketsPage {
 	private WebDriver driver;
 	private WebElement header;
-	private Select tableSelection;
+	private WebElement approveButton;
 	
 	public PendingTicketsPage (WebDriver driver) {
 		this.driver = driver;
 		this.navigateTo();
 		
 		this.header = driver.findElement(By.tagName("h1"));
-		this.tableSelection = new Select (driver.findElement(By.id("filter")));
+		this.approveButton = driver.findElement(By.xpath("//table/tbody/tr[4]/td[11]"));
 	}
 
 	public String getHeader() {
 		return this.header.getText();
 	}
 	
-	public void setTableSelection(String tableSelection) {
-		this.tableSelection.selectByVisibleText(tableSelection);
+	public void approveButtonClick() {
+		this.approveButton.click();
 	}
 	
 	public void navigateTo() {
-		this.driver.get("http://localhost:7001/html/all-tickets.html");
+		this.driver.get("http://localhost:7001/html/pending.html");
 	}
 }

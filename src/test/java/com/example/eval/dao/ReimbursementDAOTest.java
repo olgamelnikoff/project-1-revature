@@ -34,14 +34,10 @@ public class ReimbursementDAOTest {
 
 	@Mock
 	private ResultSet rs;
-	
+
 	private Reimbursement testReimbursement;
-	
-	/*	private Reimbursement anotherTestReimbursement;*/
-	
-	private List<Reimbursement>testListForUser;
-	
-	/*private List<Reimbursement>allReimbursements;*/
+
+	private List<Reimbursement> testListForUser;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -73,38 +69,17 @@ public class ReimbursementDAOTest {
 	public void tearDown() throws Exception {
 
 	}
-	
+
 	@Test
 	public void viewReimbursementSuccess() {
 		Reimbursement actualReimb = new ReimbursementDAOImpl(dc).viewReimbursement(20);
 		assertEquals(actualReimb, testReimbursement);
 	}
-	
+
 	@Test
 	public void viewPastTicketsForUserSuccess() {
 		List<Reimbursement> ticketsForThisUser = new ArrayList<>();
 		ticketsForThisUser = new ReimbursementDAOImpl(dc).viewPastTicketsForUser(1);
 		assertEquals(ticketsForThisUser, testListForUser);
 	}
-	
-	/*@Test
-	public void viewPastTicketsForAllUsersSuccess() throws SQLException {
-		when(dc.getDBConnection()).thenReturn(c);
-		when(c.prepareStatement(any(String.class))).thenReturn(ps);
-		when(ps.executeQuery()).thenReturn(rs);
-		testReimbursement = new Reimbursement(20, 5000, "business trip to attend SpaceX launching", 1, 2);
-		anotherTestReimbursement = new Reimbursement(120, 300, "wine tasting in Carmel Valley", 2, 3);
-		allReimbursements = new ArrayList<Reimbursement>();
-		allReimbursements.add(testReimbursement);
-		allReimbursements.add(anotherTestReimbursement);
-		when(rs.first()).thenReturn(true);
-		when(rs.getInt(1)).thenReturn(testReimbursement.getReimbID());
-		when(rs.getInt(2)).thenReturn(testReimbursement.getAmount());
-		when(rs.getString(5)).thenReturn(testReimbursement.getDescription());
-		when(rs.getInt(7)).thenReturn(testReimbursement.getAuthor());
-		when(rs.getInt(10)).thenReturn(testReimbursement.getType());
-		List<Reimbursement> allTickets = new ArrayList<>();
-		allTickets = new ReimbursementDAOImpl(dc).viewPastTicketsAllUsers();
-		assertEquals(allTickets, allReimbursements);
-	}*/
 }

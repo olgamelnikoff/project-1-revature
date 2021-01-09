@@ -17,7 +17,6 @@ public class MainDriver {
 	//public final static Logger log = Logger.getLogger(MainDriver.class);
 
 	public static void main(String[] args) {
-		BasicConfigurator.configure();
 
 				UserController uCon = new UserController(new UserService(new UserDAOImpl(new DAOConnection())));
 				ReimbController rCon = new ReimbController(new ReimbService(new ReimbursementDAOImpl(new DAOConnection())));
@@ -35,8 +34,14 @@ public class MainDriver {
 				app.get("/employees/view-requests", rCon.viewRequests);
 				app.post("/employees/:reimb/:resolver/approve", rCon.approveRequest);
 				app.post("/employees/:reimb/:resolver/reject", rCon.rejectRequest);
+				app.get("/reimbursements/:id", rCon.viewTicket);
 				
 				app.exception(NullPointerException.class, (e, ctx)->{
+					ctx.status(404);
+					ctx.result("User Does not exists");
+				});
+				
+				app.exception(IllegalArgumentException.class, (e, ctx)->{
 					ctx.status(404);
 					ctx.result("User Does not exists");
 				});
