@@ -33,6 +33,14 @@ public class Reimbursement {
 		this.status = status;
 		this.type = type;
 	}
+	public Reimbursement(int reimbID, int amount, String description, int author, int type) {
+		super();
+		this.reimbID = reimbID;
+		this.amount = amount;
+		this.description = description;
+		this.author = author;
+		this.type = type;
+	}
 
 	public Reimbursement(int amount, String description, int author, byte[] receipt, int type) {
 		super();
@@ -206,6 +214,4 @@ public class Reimbursement {
 			return false;
 		return true;
 	}
-	
-	
 }

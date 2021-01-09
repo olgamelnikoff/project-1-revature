@@ -14,7 +14,7 @@ import com.example.service.UserService;
 import io.javalin.Javalin;
 
 public class MainDriver {
-	public final static Logger log = Logger.getLogger(MainDriver.class);
+	//public final static Logger log = Logger.getLogger(MainDriver.class);
 
 	public static void main(String[] args) {
 		BasicConfigurator.configure();

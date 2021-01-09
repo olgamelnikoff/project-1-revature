@@ -1,0 +1,1 @@
+2021-01-08 15:33:56 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
