@@ -1,27 +1,10 @@
-/**
- * Getting a session user
- */
-window.onload=function(){
-	console.log("js is linked");
-	/*getSession(function(id) {
-		var form = document.getElementById("submit-request-form");
-		form.action = '/employees/' + id + '/new-request';
-		
 
-		
-	});*/
-		
-		
-}
 
 let submitButton = document.getElementById("requestSubmit");
 submitButton.addEventListener("click", getSession(function(id) {
 		var form = document.getElementById("submit-request-form");
 		form.action = '/employees/' + id + '/new-request';
-		
-
-		
-	}));
+}));
 
 
 let emplObj;
@@ -35,9 +18,6 @@ function getSession(callback){
 		if(xhttp.readyState == 4 && xhttp.status == 200){
 			emplObj = JSON.parse(xhttp.responseText);
 			emplId = emplObj.id;
-			
-			console.log(emplObj);
-			console.log(emplObj.id);
 			callback(emplId);
 			
 
@@ -48,5 +28,3 @@ function getSession(callback){
 	
 	xhttp.send();
 }
-
-

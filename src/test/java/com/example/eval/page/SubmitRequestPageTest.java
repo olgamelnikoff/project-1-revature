@@ -56,7 +56,7 @@ public class SubmitRequestPageTest {
 		Thread.sleep(1000);
 		lp.setUsername("spacexdragon");
 		Thread.sleep(1000);
-		lp.setPassword("hi");
+		lp.setPassword("password");
 		Thread.sleep(1000);
 		lp.submit();
 		Thread.sleep(1000);
@@ -72,7 +72,7 @@ public class SubmitRequestPageTest {
 	public void testSuccessfulSubmit() throws InterruptedException {
 		page.setAmount("2000");
 		Thread.sleep(1000);
-		page.setDescriptionField("Test");
+		page.setDescriptionField("Presidential Inauguration");
 		Thread.sleep(1000);
 		page.setTypeSelection("Travel");
 		Thread.sleep(1000);
@@ -84,7 +84,7 @@ public class SubmitRequestPageTest {
 		
 		wait.until(ExpectedConditions.urlMatches("/employee-dashboard.html"));
 		
-		Reimbursement expectedReimb = new Reimbursement(2000, "Test", 1, 1, 2);
+		Reimbursement expectedReimb = new Reimbursement(2000, "Presidential Inauguration", 1, 1, 2);
 		
 		Reimbursement actualReimb = new Reimbursement();
 		

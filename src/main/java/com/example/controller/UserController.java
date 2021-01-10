@@ -11,7 +11,6 @@ public class UserController {
 	
 
 	public Handler postLogin = (ctx) ->{
-		System.out.println(ctx.formParam("username"));
 		if(uServ.verifyLoginCredentials(ctx.formParam("username"), ctx.formParam("password"))) {
 			System.out.println("Credentials are verified");
 			ctx.sessionAttribute("user", uServ.getUserByUsername(ctx.formParam("username")));
@@ -30,9 +29,19 @@ public class UserController {
 	};
 	
 	public Handler getSessUser = (ctx)->{
-		System.out.println((User)ctx.sessionAttribute("user"));
 		User user = (User)ctx.sessionAttribute("user");
 		ctx.json(user);
+	};
+	
+	public Handler getNames = (ctx) ->{
+		
+		String this_Parameter = ctx.pathParam("id");
+		int current_Param = Integer.parseInt(this_Parameter);
+		
+		User thisUser = uServ.getUserById(current_Param);
+	
+		ctx.json(thisUser);
+		ctx.status(200);
 	};
 	
 	public UserController() {

@@ -20,6 +20,7 @@ function fullTable() {
 				let singleObjectNew = allReimbursements[i];
 				let singleArrayNew = Object.values(singleObjectNew);
 				let currentStatus = singleArrayNew[8];
+				let authorID;
 				
 				if(currentStatus == 3) {
 					
@@ -30,6 +31,12 @@ function fullTable() {
 							if (j == 2 || j ==3) {
 								var date = new Date (thisValueNew).toLocaleDateString("en-US");
 								cellNew.innerText = date;
+							}
+							else if (j == 6) {
+								authorID = thisValueNew;
+								getNames (function(name) {
+								cellNew.innerText = name;
+								}, authorID);
 							}
 							else {
 								cellNew.innerText = thisValueNew;
@@ -69,3 +76,24 @@ function getSession(callback){
 	
 	xhttp.send();
 }
+
+function getNames (callback, authorID) {		
+									
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+
+	if (xhttp.readyState == 4 && xhttp.status == 200) {
+		emplObj = JSON.parse(xhttp.responseText);
+		emplFirstName = emplObj.firstName;
+		emplLastName = emplObj.lastName;
+		let stringOfNames = emplFirstName + " " + emplLastName;
+		callback (stringOfNames);
+									
+		}
+	}
+
+	xhttp.open("GET", `http://localhost:7001/employees/${authorID}/get-first-and-last-name`);
+
+	xhttp.send();								
+};

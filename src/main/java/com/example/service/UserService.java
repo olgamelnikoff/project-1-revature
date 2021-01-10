@@ -22,6 +22,11 @@ public class UserService extends Exception {
 		return thisUser;
 	}
 	
+	public User getUserById(int id) {
+		User thisUser = UserServiceDAO.returnUserById(id);
+		return thisUser;
+	}
+	
 	public boolean getUserByEmail(String email) {
 		User thisUser = UserServiceDAO.returnUserByEmail(email);
 		
@@ -30,13 +35,6 @@ public class UserService extends Exception {
 		}
 		return true;
 	}
-	
-	/*public boolean verifyLoginCredentials (String username, String password) {
-		
-		boolean validCredentials = UserServiceDAO.login(username, password);
-	
-		return validCredentials;
-	}*/
 	
 	public boolean verifyLoginCredentials(String name, String password) {
 		 boolean isVerified = false;

@@ -18,3 +18,9 @@
 2021-01-09 14:19:29 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
 2021-01-09 14:52:47 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
 2021-01-09 14:55:00 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
+2021-01-09 16:10:34 ERROR ReimbursementDAOImpl:160 - The request was not approved because a finance manager cannot approve their own requests.
+2021-01-09 19:29:43 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 19:30:38 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 19:31:58 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-09 19:32:05 INFO  ReimbursementDAOImpl:174 - The request has been approved
+2021-01-10 08:35:34 INFO  ReimbursementDAOImpl:174 - The request has been approved

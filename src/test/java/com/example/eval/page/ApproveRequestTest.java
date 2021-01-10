@@ -58,7 +58,7 @@ public class ApproveRequestTest {
 		Thread.sleep(1000);
 		lp.setUsername("nectarine");
 		Thread.sleep(1000);
-		lp.setPassword("bye");
+		lp.setPassword("password");
 		Thread.sleep(1000);
 		lp.submit();
 		Thread.sleep(1000);
@@ -75,6 +75,8 @@ public class ApproveRequestTest {
 	@Test
 	public void approveRequestSuccess() throws InterruptedException {
 		assertEquals(pendingPage.getHeader(), "Pending Tickets For All Employees");
+		Thread.sleep(3000);
+		System.out.println (pendingPage.getButtonText());
 		pendingPage.approveButtonClick();
 		Thread.sleep(3000);
 
@@ -85,7 +87,7 @@ public class ApproveRequestTest {
 		try (Connection con = connection.getDBConnection()) {
 			String sql = "SELECT REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID FROM ERS_REIMBURSEMENT WHERE REIMB_ID = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, 40420);
+			ps.setInt(1, 50140);
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.first()) {
@@ -101,6 +103,6 @@ public class ApproveRequestTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		assertEquals(expectedReimb, actualReimb);
+		assertEquals(expectedReimb.getStatus(), actualReimb.getStatus());
 	}
 }
