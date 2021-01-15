@@ -19,6 +19,7 @@ function fullTable() {
 					let singleArrayNew = Object.values(singleObjectNew);
 					let currentStatus = singleArrayNew[8];
 					let authorID;
+					let resolverID;
 
 					if (currentStatus == 1) {
 						reimbId = singleArrayNew[0];
@@ -36,13 +37,35 @@ function fullTable() {
 							}
 							else if (j == 6) {
 								authorID = thisValueNew;
-								getNames (function(name) {
-								cellNew.innerText = name;
+								getNames(function(name) {
+									cellNew.innerText = name;
 								}, authorID);
 							}
-							
+
 							else if (j == 7) {
 								cellNew.innerText = "Not resolved yet";
+							}
+
+							else if (j == 8) {
+								cellNew.innerText = "Pending";
+							}
+
+							else if (j == 9) {
+								if (thisValueNew == 1) {
+									cellNew.innerText = "Lodging";
+								}
+								else if (thisValueNew == 2) {
+									cellNew.innerText = "Travel";
+								}
+
+								else if (thisValueNew == 3) {
+									cellNew.innerText = "Food";
+								}
+
+								else if (thisValueNew == 4) {
+									cellNew.innerText = "Other";
+								}
+
 							}
 
 							else {
@@ -142,23 +165,23 @@ function getSession(callback) {
 	xhttp.send();
 }
 
-function getNames (callback, authorID) {		
-									
+function getNames(callback, authorID) {
+
 	let xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function() {
 
-	if (xhttp.readyState == 4 && xhttp.status == 200) {
-		emplObj = JSON.parse(xhttp.responseText);
-		emplFirstName = emplObj.firstName;
-		emplLastName = emplObj.lastName;
-		let stringOfNames = emplFirstName + " " + emplLastName;
-		callback (stringOfNames);
-									
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			emplObj = JSON.parse(xhttp.responseText);
+			emplFirstName = emplObj.firstName;
+			emplLastName = emplObj.lastName;
+			let stringOfNames = emplFirstName + " " + emplLastName;
+			callback(stringOfNames);
+
 		}
 	}
 
 	xhttp.open("GET", `http://localhost:7001/employees/${authorID}/get-first-and-last-name`);
 
-	xhttp.send();								
+	xhttp.send();
 };

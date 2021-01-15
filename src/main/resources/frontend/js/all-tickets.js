@@ -18,6 +18,7 @@ function fullTable() {
 				let singleObject = allReimbursements[i];
 				let singleArray = Object.values(singleObject);
 				let authorID;
+				let resolverID;
 				
 				for (let j = 0; j < singleArray.length; j++) {
 					let cell = newRow.insertCell(j);
@@ -41,6 +42,44 @@ function fullTable() {
 					
 					else if (j == 7 && thisValue == 0) {
 						cell.innerText = "Not resolved yet"
+					}
+					
+					else if (j == 7) {
+						resolverID = thisValue;
+						getNames (function(name) {
+						cell.innerText = name;
+						}, resolverID);
+					}
+					
+					else if (j == 8) {
+						if (thisValue == 1) {
+							cell.innerText = "Pending";
+						}
+						else if (thisValue == 2) {
+							cell.innerText = "Approved";
+						}
+						
+						else if (thisValue == 3) {
+							cell.innerText = "Rejected";
+						}
+					}
+					
+					else if (j == 9) {
+						if (thisValue == 1) {
+							cell.innerText = "Lodging";
+						}
+						else if (thisValue == 2) {
+							cell.innerText = "Travel";
+						}
+						
+						else if (thisValue == 3) {
+							cell.innerText = "Food";
+						}
+						
+						else if (thisValue == 4) {
+							cell.innerText = "Other";
+						}
+
 					}
 					else {
 						cell.innerText = thisValue;

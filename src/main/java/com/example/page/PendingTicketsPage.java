@@ -15,20 +15,28 @@ public class PendingTicketsPage {
 		this.navigateTo();
 		
 		this.header = driver.findElement(By.tagName("h1"));
-		this.approveButton = driver.findElement(By.xpath("//table/tbody/tr[4]/td[11]"));
+		this.approveButton = driver.findElement(By.xpath("//table/tbody/tr[3]/td[11]"));
 	}
 
 	public String getHeader() {
 		return this.header.getText();
 	}
 	
+	public WebDriver getDriver()  {
+		return this.driver;
+	}
+	
 	public String getButtonText() {
 		return approveButton.getText();
 	}
 	
+	public WebElement getButton () {
+		return this.approveButton;
+	}
+	
 	public void approveButtonClick() {
 		this.approveButton.click();
-		//this.approveButton.sendKeys(Keys.RETURN);
+		//this.approveButton.sendKeys(Keys.ENTER);
 		System.out.println("Was in button click");
 	}
 	

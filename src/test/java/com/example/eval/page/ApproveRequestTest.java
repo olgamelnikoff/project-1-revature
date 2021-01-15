@@ -13,8 +13,12 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.example.dao.DAOConnection;
 import com.example.model.Reimbursement;
@@ -77,17 +81,23 @@ public class ApproveRequestTest {
 		assertEquals(pendingPage.getHeader(), "Pending Tickets For All Employees");
 		Thread.sleep(3000);
 		System.out.println (pendingPage.getButtonText());
-		pendingPage.approveButtonClick();
+		WebDriver driver = pendingPage.getDriver();
+		/*JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", pendingPage.getButton());*/
+		WebElement currentButton = driver.findElement(By.xpath("//table/tbody/tr[3]/td[11]"));
+		System.out.println(currentButton.isEnabled());
+		WebElement my_element = new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(pendingPage.getButton()));
+		my_element.click();
 		Thread.sleep(3000);
 
-		Reimbursement expectedReimb = new Reimbursement(2000, "Test", 1, 2, 2);
+		Reimbursement expectedReimb = new Reimbursement(2000, "Test", 1, 1, 2);
 
 		Reimbursement actualReimb = new Reimbursement();
 
 		try (Connection con = connection.getDBConnection()) {
 			String sql = "SELECT REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID FROM ERS_REIMBURSEMENT WHERE REIMB_ID = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, 50140);
+			ps.setInt(1, 50130);
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.first()) {
