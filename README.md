@@ -57,6 +57,27 @@ Finance managers are authorized to approve and deny requests for expense reimbur
 ![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/01_LoginPage.png "Optional title")
 
 2. You will see the Employee screen:
+
 ![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/02_Employee_Dashboard.png "Optional title")
+
+3. Hit "View Past Tickets" button:
+
+![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/03_Past_Tickets.png "Optional title")
+
+4. Go back and hit "Add Reimbursement Request" button, then fill out the form and hit "Submit Request":
+
+![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/04_Submit_New_Request.png "Optional title")
+
+5. You can reload the login page and enter "nectarine" as username and "password" as password. Then hit "View All Tickets" button:
+
+![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/05_Finance_Manager_Dashboard.png "Optional title")
+
+6. Then select "Pending" from the dropdown list:
+
+![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/06_View_All_Tickets.png "Optional title")
+
+7. It will direct you to the Pending Tickets page. You can then hit the "Approve" or "Reject" button.
+
+![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/07_Pending_Tickets.png "Optional title")
 
 ## Contributors and License information
