@@ -52,9 +52,11 @@ Finance managers are authorized to approve and deny requests for expense reimbur
 - Go to start page - http://localhost:7001/html/login.html
 
 ## Usage of the project
-- on the start page, enter "spacexdragon" as username and "password" as password
+1. On the start page, enter "spacexdragon" as username and "password" as password
+
 ![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/01_LoginPage.png "Optional title")
-- update the URL, username and password for the Database connection in the following file: com.example.dao.DAOConnection.java
-- start Main Driver as Java Application, it will start Javalin
-- Go to start page - http://localhost:7001/html/login.html
+
+2. You will see the Employee screen:
+![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/02_Employee_Dashboard.png "Optional title")
+
 ## Contributors and License information
