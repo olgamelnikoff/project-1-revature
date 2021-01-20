@@ -40,10 +40,21 @@ Finance managers are authorized to approve and deny requests for expense reimbur
 ## To-do List:
 - Log out functionality
 - Registration functionality
-- Add more security to the project (to prevent unauthorized access)
-- 
-
+- Forgot Password feature
+- Sending an email with a temporary password upon registration
+- Password encryption
+- Add more security to the project, to prevent unauthorized access
 
 ## How to set up / get started using it
+- git clone the project using the project URL
+- update the URL, username and password for the Database connection in the following file: com.example.dao.DAOConnection.java
+- start Main Driver as Java Application, it will start Javalin
+- Go to start page - http://localhost:7001/html/login.html
+
 ## Usage of the project
+- on the start page, enter "spacexdragon" as username and "password" as password
+![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/01_LoginPage.png "Optional title")
+- update the URL, username and password for the Database connection in the following file: com.example.dao.DAOConnection.java
+- start Main Driver as Java Application, it will start Javalin
+- Go to start page - http://localhost:7001/html/login.html
 ## Contributors and License information
