@@ -80,4 +80,5 @@ Finance managers are authorized to approve and deny requests for expense reimbur
 
 ![Alt text](https://github.com/olgamelnikoff/project-1-revature/blob/master/src/main/resources/frontend/screenshots/07_Pending_Tickets.png "Optional title")
 
-## Contributors and License information
+## Contributors
+Olga Melnikova
